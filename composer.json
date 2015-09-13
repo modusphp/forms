@@ -1,0 +1,17 @@
+{
+    "name": "tailwindsllc/modus-forms",
+    "description": "A form validation library for Modus Framework.",
+    "require": {
+        "aura/filter": "2.0.0-alpha1"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Brandon Savage",
+            "email": "brandon@brandonsavage.net"
+        }
+    ],
+  "psr-4": {
+    "Modus\\Forms\\": "src/"
+  }
+}
