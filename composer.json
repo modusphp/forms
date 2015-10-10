@@ -1,5 +1,5 @@
 {
-    "name": "tailwindsllc/modus-forms",
+    "name": "modus/forms",
     "description": "A form validation library for Modus Framework.",
     "require": {
         "aura/filter": "2.0.0-alpha1"
