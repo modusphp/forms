@@ -1,6 +1,6 @@
 <?php
 
-namespace Modus\Form;
+namespace Modus\Forms;
 
 use Aura\Filter\Filter;
 
