@@ -2,7 +2,7 @@
     "name": "modus/forms",
     "description": "A form validation library for Modus Framework.",
     "require": {
-        "aura/filter": "2.0.0-alpha1"
+        "aura/filter": "^1.1"
     },
     "license": "MIT",
     "authors": [
@@ -11,7 +11,9 @@
             "email": "brandon@brandonsavage.net"
         }
     ],
-  "psr-4": {
-    "Modus\\Forms\\": "src/"
+  "autoload": {
+    "psr-4": {
+      "Modus\\Form\\": "src/"
+    }
   }
 }
