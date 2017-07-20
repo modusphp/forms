@@ -2,12 +2,12 @@
 
 namespace Modus\Forms;
 
-use Aura\Filter\Filter;
+use Aura\Filter\SubjectFilter;
 
 abstract class FormBase
 {
     /**
-     * @var Filter
+     * @var SubjectFilter
      */
     protected $filter;
 
@@ -26,9 +26,9 @@ abstract class FormBase
     protected $errorClass = 'has-error';
 
     /**
-     * @param Filter $filter
+     * @param SubjectFilter $filter
      */
-    public function __construct(Filter $filter)
+    public function __construct(SubjectFilter $filter)
     {
         if(empty($this->fields)) {
             throw new \InvalidArgumentException('A list of fields is required for the form!');
@@ -82,11 +82,28 @@ abstract class FormBase
 
     /**
      * @param $field
-     * @return string
+     * @return string|array
      */
-    public function getError($field)
+    public function getError($field, $type = 'string')
     {
-        return implode(' ', $this->filter->getMessages($field));
+        switch ($type) {
+
+            case 'string':
+                return $this->filter->getFailures()->getMessagesForFieldAsString($field);
+                break;
+
+            case 'array':
+                return $this->filter->getFailures()->getMessagesForField($field);
+                break;
+
+            case 'object':
+                return (object)$this->filter->getFailures()->getMessagesForField($field);
+                break;
+
+            default:
+                throw new \InvalidArgumentException('Invalid type of "' . $type . '" was provided!');
+        }
+
     }
 
     /**
@@ -95,7 +112,7 @@ abstract class FormBase
      */
     public function hasError($field)
     {
-        return !empty($this->filter->getMessages($field));
+        return (bool)$this->filter->getFailures()->forField($field);
     }
 
     /**
@@ -103,7 +120,7 @@ abstract class FormBase
      */
     public function getErrors()
     {
-        return $this->filter->getMessages();
+        return $this->filter->getFailures()->getMessages();
     }
 
     /**

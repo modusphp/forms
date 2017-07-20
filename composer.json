@@ -2,7 +2,7 @@
     "name": "modus/forms",
     "description": "A form validation library for Modus Framework.",
     "require": {
-        "aura/filter": "^1.1"
+        "aura/filter": "^2.3"
     },
     "license": "MIT",
     "authors": [
