@@ -25,7 +25,7 @@ protected function configureValidations()
   $filter->addSoftRule('username', $filter::IS, 'alnum');
   $filter->addSoftRule('username', $filter::IS_NOT, 'blank');
   $filter->addSoftRule('password', $filter::IS_NOT, 'blank');
-  $filter->addSoftRule('password_verify', $filter::IS, 'equaltoField', 'password');
+  $filter->addSoftRule('password_verify', $filter::IS, 'equalToField', 'password');
 }
 ```
 ## Using Forms
