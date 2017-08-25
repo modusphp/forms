@@ -23,8 +23,6 @@ abstract class FormBase
      */
     protected $suppliedData = [];
 
-    protected $errorClass = 'has-error';
-
     /**
      * @param SubjectFilter $filter
      */
@@ -89,15 +87,11 @@ abstract class FormBase
         switch ($type) {
 
             case 'string':
-                return $this->filter->getFailures()->getMessagesForFieldAsString($field);
+                return trim($this->filter->getFailures()->getMessagesForFieldAsString($field));
                 break;
 
             case 'array':
                 return $this->filter->getFailures()->getMessagesForField($field);
-                break;
-
-            case 'object':
-                return (object)$this->filter->getFailures()->getMessagesForField($field);
                 break;
 
             default:
@@ -124,21 +118,6 @@ abstract class FormBase
     }
 
     /**
-     * Return a predefined error class that can be used in displaying the error form.
-     *
-     * @param $field
-     * @return string
-     */
-    public function getErrorClass($field)
-    {
-        if ($this->hasError($field)) {
-            return $this->errorClass;
-        }
-
-        return null;
-    }
-
-    /**
      * @param $field
      * @return null
      */
@@ -153,7 +132,7 @@ abstract class FormBase
 
     /**
      * We don't want to dump all the validators in an error case.
-     *
+     * @codeCoverageIgnore
      * @return array
      */
     public function __debugInfo()
