@@ -106,7 +106,12 @@ abstract class FormBase
      */
     public function hasError($field)
     {
-        return (bool)$this->filter->getFailures()->forField($field);
+        $failures = $this->filter->getFailures();
+        if ($failures) {
+            return (bool)$failures->forField($field);
+        }
+
+        return false;
     }
 
     /**
